@@ -70,11 +70,11 @@ void find(int n, char result[], int sum[])
 int main(int argc, const char * argv[]) {
     int arr[15], temp[15], n;
     scanf("%d", &n);
-    int i, k=1;
+    int i, k=1, r;
     for (i = 0; i < n; i++)
         temp[i] = 0;
     int sum[n];
-    float ans;
+    float tmp, ans;
     for (int i = 0; i < n; i++)
     {
         sum[i]=0;
@@ -82,8 +82,13 @@ int main(int argc, const char * argv[]) {
     }
     Permutation(0, n, arr, temp, sum);
     for (int i = 0; i < n; i++) {
-        ans = (float) sum[i] / (float) k;
-        printf("%d:%.3f\n", i+1, ans);
+        tmp = (float) sum[i] / (float) k;
+        if (i==0 || tmp>ans)
+        {
+            ans = tmp;
+            r = i;
+        }
     }
+    printf("n=%d r=%d p=%.3f\n", n, r+1, ans);
     return 0;
 }
